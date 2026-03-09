@@ -1,13 +1,11 @@
 import { useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
-  const sectionRef = useRef(null); // for animation
-  
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -63,18 +61,31 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* ✅ IMPORTANT: ref must be here */}
-        <form action="https://formsubmit.co/prathamgedam06@gmail.com" method="POST" className="contact-form contact-reveal" >
+        {/* Contact Form */}
+        <form
+          action="https://formsubmit.co/prathamgedam06@gmail.com"
+          method="POST"
+          className="contact-form contact-reveal"
+        >
+          {/* FormSubmit Settings */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://portfolio-2-liart-five.vercel.app"
+          />
+
           <input
             type="text"
-            name="from_name"
+            name="name"
             placeholder="Your Name"
             required
           />
 
           <input
             type="email"
-            name="from_email"
+            name="email"
             placeholder="Your Email"
             required
           />
