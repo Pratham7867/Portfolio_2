@@ -7,31 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef(null); // for animation
-  const formRef = useRef(null);    // for EmailJS
-  const serviceKey = import.meta.env.VITE_EMAIL_SERVICE;
-  const templateKey = import.meta.env.VITE_EMAIL_TEMPLATE;
-  const publicKey = import.meta.env.VITE_EMAIL_PUBLIC;
-
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        `${serviceKey}`,
-        `${templateKey}`,
-        formRef.current,   // ✅ now this is the real form
-        `${publicKey}`
-      )
-      .then(() => {
-        alert("Message Sent Successfully!");
-        formRef.current.reset();
-      })
-      .catch((error) => {
-        console.error("FAILED...", error);
-        alert("Something went wrong.");
-      });
-  };
+  
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -88,7 +64,7 @@ export default function Contact() {
         </div>
 
         {/* ✅ IMPORTANT: ref must be here */}
-        <form ref={formRef} className="contact-form contact-reveal" onSubmit={sendEmail}>
+        <form action="https://formsubmit.co/prathamgedam06@gmail.com" method="POST" className="contact-form contact-reveal" >
           <input
             type="text"
             name="from_name"
