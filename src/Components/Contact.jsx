@@ -7,6 +7,32 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Contact() {
   const sectionRef = useRef(null);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/prathamgedam06@gmail.com",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        e.target.reset();
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       const elements = gsap.utils.toArray(".contact-reveal");
@@ -63,18 +89,10 @@ export default function Contact() {
 
         {/* Contact Form */}
         <form
-          action="https://formsubmit.co/prathamgedam06@gmail.com"
-          method="POST"
+          onSubmit={handleSubmit}
           className="contact-form contact-reveal"
         >
-          {/* FormSubmit Settings */}
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input
-            type="hidden"
-            name="_next"
-            value="https://portfolio-2-liart-five.vercel.app"
-          />
 
           <input
             type="text"
