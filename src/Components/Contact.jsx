@@ -17,11 +17,16 @@ export default function Contact() {
         "https://formsubmit.co/ajax/prathamgedam06@gmail.com",
         {
           method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
           body: formData,
         }
       );
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (data.success === "true" || response.ok) {
         alert("Message sent successfully!");
         e.target.reset();
       } else {
@@ -87,11 +92,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Contact Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="contact-form contact-reveal"
-        >
+        <form onSubmit={handleSubmit} className="contact-form contact-reveal">
           <input type="hidden" name="_captcha" value="false" />
 
           <input
